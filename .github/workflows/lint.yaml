@@ -21,14 +21,9 @@ jobs:
       with:
         php-version: '7.4'
 
-    - name: Install Composer dependencies
-      run: |
-        curl -sS https://getcomposer.org/installer | php
-        php composer.phar install
-
     - name: Install PHP_CodeSniffer
       run: |
-        composer global require "squizlabs/php_codesniffer=*"
+         apt install php-phpcs
 
     - name: Lint PHP files
       run: |
