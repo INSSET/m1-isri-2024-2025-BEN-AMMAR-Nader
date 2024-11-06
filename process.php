@@ -38,4 +38,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<p>Les champs nom et prénom sont requis.</p>";
     }
 }
-?>
