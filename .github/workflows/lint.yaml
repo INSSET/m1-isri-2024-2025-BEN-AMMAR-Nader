@@ -1,0 +1,35 @@
+name: PHP Linter
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '7.4'
+
+    - name: Install Composer dependencies
+      run: |
+        curl -sS https://getcomposer.org/installer | php
+        php composer.phar install
+
+    - name: Install PHP_CodeSniffer
+      run: |
+        composer global require "squizlabs/php_codesniffer=*"
+
+    - name: Lint PHP files
+      run: |
+        phpcs --standard=PSR12 process.php
